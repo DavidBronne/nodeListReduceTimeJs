@@ -182,6 +182,34 @@
     </li>
   </ul>
 <script>
+  const domNodeList = document.querySelectorAll('[data-time]')
+  const arrayList = [...domNodeList]
+  /* console.log(`arrayList`, arrayList) */
+  const seconds = arrayList
+    .map( time => time.dataset.time)
+    .map( minSec => {
+      const [min, sec] =  minSec.split(':').map(parseFloat)
+      return     min * 60 + sec
+    })
+
+  const totalSec = seconds.reduce((total,currentSec) =>{
+    return total + currentSec
+  })
+  
+  const totalHours = Math.floor(totalSec / 3600)
+  let totalSecLeft = totalSec % 3600
+  const totalMins = Math.floor(totalSecLeft / 60)
+  totalSecLeft = totalSecLeft % 60
+  const SecLeft = totalSecLeft % 60
+  
+  console.log(`totalHours`, totalHours)
+  console.log(`totalMins`, totalMins)
+  console.log(`totalSecLeft`, SecLeft)
+
+
+
+
+
 </script>
 </body>
 </html>
